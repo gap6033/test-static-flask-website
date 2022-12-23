@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+An Attorney's Coding Journey
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="card text-center">
+    <div class="card-header">
+      <h1 style="color:blue">About the Website</h1>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"> A Lawyer's Coding Repository</h5>
+      <p class="card-text" style="text-align: justify; text-justify: inter-word;">This website,for the time being, merely serves as an expirement in my journey from being
+        a lawyer to becoming familiar with the computer science universe. I have created it to explore the realm of
+        web devlopment. Currently, I am using the Flask framework for deploying the site and relying on the Bootstrap
+        framework for styling it. I have begun first by developing the front-end; developing an interactive and
+        responsive but static web application that presently is capable of only taking in the "GET" requests from users. However,
+        as I proceed further ahead in my exploration, I do intend to utilize functionality of the "POST" method as well thereby
+        creating a web application that allows users to POST data as well and for which I'll be taking assistance of SQL language. In the meanwhile, in order to better explore the functionality of this website, I'll be using the content (unrelated to web devlopment) from the various online CS courses that I undertook.</p>
+      </div>
+    </div>
+    <div class="card-deck" style="margin-top:10px">
+      <div class="card">
+        <img src="{{url_for('static', filename='graph.jpg')}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Statistics & Probability using R</h5>
+          <p class="card-text">Course is divided into 2 parts and covers stats and probability concepts from the basic level to concepts like chi-square, ANOVA and how to implement them in R</p>
+          <a href="/rstatsp1w1" class="btn btn-primary"><b>Course Notes</b></a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="{{url_for('static', filename='Rprogramming.jpg')}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">R Programming</h5>
+          <p class="card-text">A Basic overview of how to use R for Data Science</p>
+          <a href="#" class="btn btn-primary"><b>Course Notes</b></a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="{{url_for('static', filename='Python.jpg')}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Python Programming</h5>
+          <p class="card-text">This course is taught by Dr. Charles Severance as a part of the Programming for Everybody Course</p>
+          <a href="#" class="btn btn-primary"><b>Course Notes</b></a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="{{url_for('static', filename='Cprogramming.jpg')}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Cs50</h5>
+          <p class="card-text">The famous Harvard Introduction to Computer Science course taught by Prof. David J. Malan. Mostly C based with little bit of python and SQL at the end. It has really interesting problem sets. P.S. - Not for the faint of heart !</p>
+          <a href="#" class="btn btn-primary"><b>Course Notes</b></a>
+        </div>
+      </div
+    </div>
+  </div>
+{% endblock %}

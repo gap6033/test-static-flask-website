@@ -1,0 +1,1395 @@
+{% extends "layout.html" %}
+
+{% block title %}
+R: Statistics & Probability Part 1 Week 1
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="card" style="margin-top:50px">
+  <div class="card-body">
+    <h1 style="color:blue; text-align:center;">Learning Statistics and Probability using R: Part I</h1>
+    <h3>Topics</h3>
+    <ul>
+      <li><a href="#rstatsp1w1">Week 1 - Intro to Stats and Probability and a bit of R</a></li>
+      <li><a href="/rstatsp1w2">Week 2 - S.D., IQR, Visualizing Data in R, z-score right side probability</a></li>
+      <li><a href="/rstatsp1w3">Week 3 - Plotting bivariate data in R</a></li>
+      <li><a href="/rstatsp1w4">Week 4 - Visualization of bivariate categorical data in R</a></li>
+      <li><a href="/rstatsp1w5">Week 5 - Bivariate Data, Functions and Linear Models</a></li>
+      <li><a href="/rstatsp1w6">Week 6 - Exponential and Logistic Model</a></li>
+    </ul>
+  </div>
+</div>
+</div>
+<div class="container">
+<div class="card" style="margin-top:10px">
+  <div class="card-body">
+    <h1 style="color:blue; text-align:center;"><a id="rstatsp1w1">Week 1 - Intro to Stats and Probability and a bit of R</a></h1>
+    <br>
+    <hr>
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 12">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=File-List
+href="Intro%20&amp;%20Descriptive%20Statistics_files/filelist.xml">
+<link rel=Edit-Time-Data
+href="Intro%20&amp;%20Descriptive%20Statistics_files/editdata.mso">
+
+<link rel=themeData
+href="Intro%20&amp;%20Descriptive%20Statistics_files/themedata.thmx">
+<link rel=colorSchemeMapping
+href="Intro%20&amp;%20Descriptive%20Statistics_files/colorschememapping.xml">
+
+<style>
+
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin-top:0in;
+	mso-para-margin-right:0in;
+	mso-para-margin-bottom:10.0pt;
+	mso-para-margin-left:0in;
+	line-height:115%;
+	mso-pagination:widow-orphan;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="4098"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitle>Population Data v. Sample Data</p>
+
+</div>
+
+<p class=MsoNormal>Sample data must be representative of Population; no sort of
+sampling bias or any kind of exclusions, to be as random as possible.</p>
+
+<p class=MsoNormal>The data points in a sample must be independent of each
+other.</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=391 height=219
+src="{{ url_for('static',filename='image002.jpg') }}" v:shapes="Picture_x0020_1"><![endif]></span></p>
+
+<p class=MsoNormal>Samples always give an <b style='mso-bidi-font-weight:normal'>estimation/approximation</b>
+of the population data rather than the exact representation. There always exist
+some sort of unknown uncertainties in samples. Due to this reasons formulas
+involving population data and sample data have slight differences. </p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=540 height=301
+src="{{ url_for('static',filename='image004.jpg') }}" v:shapes="_x0000_i1056"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitle>Descriptive Statistics</p>
+
+</div>
+
+<h1>Summarizing Data for Categorical Variable: Bar Chart</h1>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Categorical Data – Labels, Names or other descriptors. There
+is no order(unlike Quantitative Data) involved and there exists exclusivity in
+theses description; no overlapping.</p>
+
+<p class=MsoNormal>Graphical Representation of Categorical Variables is a Bar
+Chart (not Histogram). A Bar Chart has space between the bars while Histograms
+are continuous.</p>
+
+<p class=MsoNormal>Relative Frequency of a class – Frequency of the class/n</p>
+
+<p class=MsoNormal>Relative Frequency Bar Chart looks exactly the same as
+Categorical Bar Chart for a given data set.</p>
+
+<h1>Summarizing Data for Quantitative Variable: Histogram Chart</h1>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Quantitative Data – They are numerical values and involve
+order. </p>
+
+<p class=MsoNormal>Graphical Representation of a Quantitative Variable is a
+Histogram.</p>
+
+<p class=MsoNormal>We should choose the width of a histogram that bests
+represents the data, i.e. again it would depend on the kind of the data we
+have.</p>
+
+<p class=MsoNormal>Left Skew Histogram – Tail is towards the Left Side –
+Majority Data clustered towards right.</p>
+
+<p class=MsoNormal>Right Skew Histogram – Tail is towards the Right Side –
+Majority Data clustered towards left.</p>
+
+<p class=MsoNormal>Symmetric Histogram– Normal Distribution – Both sides have
+approximately equal observations.</p>
+
+<p class=MsoNormal>Bi-modal Histogram </p>
+
+<p class=MsoNormal>Uniform Histogram <span style='mso-spacerun:yes'> </span>-
+Every Data point falls in one single bar of the Histogram. This normally
+happens if we haven’t chosen the right width for the bar. This will not help in
+interpreting the data.</p>
+
+<p class=MsoNormal>No – Pattern – If we choose to small of a width for the bar
+of the Histogram, we might not be able to predict the pattern of the data.</p>
+
+<p class=MsoNormal>Relative Frequency Histogram looks exactly the same as
+Histogram for a given data set.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<h1>Stem and Leaf Diagrams </h1>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=525 height=290
+src="{{ url_for('static',filename='image006.jpg') }}" v:shapes="_x0000_i1055"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=396 height=218
+src="{{ url_for('static',filename='image008.jpg') }}" v:shapes="_x0000_i1054"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Stem and Leaf Representation using <span class=Heading2Char><span
+style='font-size:13.0pt;line-height:115%'>SPSS (can also use Minitab or other
+statistical software packages. Excel would not be that efficient for Stem &amp;
+Leaf representation)</span></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=546 height=300
+src="{{ url_for('static',filename='image010.jpg') }}" v:shapes="_x0000_i1053"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>We put bar over our leafs – </p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=508 height=280
+src="{{ url_for('static',filename='image012.jpg') }}" v:shapes="_x0000_i1052"><![endif]></span></p>
+
+<p class=MsoNormal>This looks like a sideways Histogram and hence, it also
+shows you the shape of the data. <b style='mso-bidi-font-weight:normal'><span
+style='color:#00B050'>Further, it also has modal qualities, as can be seen from
+the numbers inside the leafs</span></b> (see 41, the most frequently occurring
+observation)</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=596 height=326
+src="{{ url_for('static',filename='image014.jpg') }}" v:shapes="_x0000_i1051"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitle>Cross-Tabulation : Table Summary for Two Variables</p>
+
+</div>
+
+<p class=MsoNormal>All the above scenarios involved only single variable
+(brand, age)</p>
+
+<p class=MsoNormal>The word ‘cross’ signifies intersection of two variables –
+describing the relationship between two variables –both quantitative and
+categorical.</p>
+
+<p class=MsoNormal>Cross Tabulation is used in more advanced statistical
+techniques such as Chi-square, ANOVA etc.</p>
+
+<p class=MsoNormal>Size of Cross Tabulation = no. of categories of one variable
+x no. of categories of the other variable. Eg – 1<sup>st</sup> variable has 5
+categories and 2<sup>nd</sup> variable has 6 categories, total no. of cells =
+30.</p>
+
+<p class=MsoNormal>Each cell is an intersection of the categories at that
+point.</p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='color:#00B050'>In Excel, Cross Tabulation is done through Pivot Table.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=568 height=313
+src="{{ url_for('static',filename='image016.jpg') }}" v:shapes="_x0000_i1050"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitle>Measures of Variability: Z-Scores</p>
+
+</div>
+
+<p class=MsoNormal>Standard Deviation/Variance tells about how
+spread/distributed out the data is. Two data sets can have the same mean, but
+their spread may differ. This <b style='mso-bidi-font-weight:normal'><span
+style='color:#00B050'>spread</span></b> is also referred to as <b
+style='mso-bidi-font-weight:normal'><span style='color:#00B050'>Variability
+(one of the measures of variability)</span></b>. A low Standard Deviation means
+the data is clustered towards the mean and a High Standard Deviation means the
+data is spread apart from the mean.</p>
+
+<p class=MsoNormal>Z-score tells about how much spread out a single data point
+is from the mean. The no. of <span style='mso-spacerun:yes'> </span>standard
+deviations away is a data point from the mean. It is a unit less measure
+(unlike standard deviation) and hence, allows us to compare data sets that may
+even be in different units.</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=520 height=283
+src="{{ url_for('static',filename='image018.jpg') }}" v:shapes="_x0000_i1049"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=392 height=208
+src="{{ url_for('static',filename='image020.jpg') }}" v:shapes="Picture_x0020_31"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='color:#00B050'>Coefficient of Variation</span></b> – S.D. * 100 /Mean,
+How large is the Standard Deviation relative to the Mean. It is also unit independent;
+what units our original data is when comparing data sets.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitle>Bivariate Relationships: Covariance</p>
+
+</div>
+
+<p class=MsoNormal>Bivariate = Two Variables</p>
+
+<p class=MsoNormal>Tells about the <b style='mso-bidi-font-weight:normal'><span
+style='color:#00B050'>Linear Relationship</span></b> between two variables
+(just like correlation and linear regression)-</p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in;mso-list:l0 level1 lfo1'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Positive Covariance – Variables move in same
+direction.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l0 level1 lfo1'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Negative Covariance – Variables move in opposite
+direction.</p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-.25in;mso-list:l0 level1 lfo1'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Zero or near zero Covariance – A Shotgun Blast,
+points don’t have any linear relationship, there is no pattern.</p>
+
+<p class=MsoNormal>It does not tell the strength of the relationship.</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=520 height=290
+src="{{ url_for('static',filename='image022.jpg') }}" v:shapes="Picture_x0020_34"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=520 height=290
+src="{{ url_for('static',filename='image024.jpg') }}" v:shapes="Picture_x0020_37"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=520 height=290
+src="{{ url_for('static',filename='image026.jpg') }}" v:shapes="Picture_x0020_40"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<h1>Covariance Matrix</h1>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=540 height=304
+src="{{ url_for('static',filename='image028.jpg') }}" v:shapes="Picture_x0020_43"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=575 height=301
+src="{{ url_for('static',filename='image030.jpg') }}" v:shapes="Picture_x0020_46"><![endif]></span></p>
+
+<p class=MsoNormal>Most of the real world data would not look like that linear
+relationship it would be more like these scatterplots where it would be
+difficult to discern the relationship.</p>
+
+<p class=MsoNormal style='tab-stops:354.75pt'><span style='mso-no-proof:yes'><![if !vml]><img width=575 height=324
+src="{{ url_for('static',filename='image032.jpg') }}" v:shapes="Picture_x0020_49"><![endif]></span></p>
+
+<p class=MsoNormal style='tab-stops:354.75pt'>Variance is on the diagonals, the
+variable pitched against itself.</p>
+
+<p class=MsoNormal style='tab-stops:354.75pt'>Co-variance is off the diagonals.</p>
+
+<p class=MsoNormal style='tab-stops:354.75pt'><span style='mso-no-proof:yes'><![if !vml]><img width=561 height=312
+src="{{ url_for('static',filename='image034.jpg') }}" v:shapes="Picture_x0020_52"><![endif]></span></p>
+
+<p class=MsoNormal style='tab-stops:354.75pt'><span style='mso-no-proof:yes'><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image036.jpg') }}" v:shapes="Picture_x0020_58"><![endif]><o:p></o:p></span></p>
+
+<h1><span style='mso-no-proof:yes'>Correlation – only applicable to Linear
+Relationships<o:p></o:p></span></h1>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image038.jpg') }}" v:shapes="Picture_x0020_61"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image040.jpg') }}" v:shapes="Picture_x0020_64"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image042.jpg') }}" v:shapes="Picture_x0020_67"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image044.jpg') }}" v:shapes="Picture_x0020_70"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image046.jpg') }}" v:shapes="Picture_x0020_76"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image048.jpg') }}" v:shapes="Picture_x0020_79"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitle>Probability Distributions: Is My Data Normal?</p>
+
+</div>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image050.jpg') }}" v:shapes="Picture_x0020_4"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_7" o:spid="_x0000_i1032" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="Intro%20&amp;%20Descriptive%20Statistics_files/image051.png"
+  o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image052.jpg') }}" v:shapes="Picture_x0020_7"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Why is it necessary to know whether our data is Normal? Ans.
+in Red.</p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape id="Picture_x0020_10"
+ o:spid="_x0000_i1031" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="Intro%20&amp;%20Descriptive%20Statistics_files/image053.png"
+  o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image054.jpg') }}" v:shapes="Picture_x0020_10"><![endif]></span><o:p></o:p></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape id="Picture_x0020_13"
+ o:spid="_x0000_i1030" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="Intro%20&amp;%20Descriptive%20Statistics_files/image055.png"
+  o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image056.jpg') }}" v:shapes="Picture_x0020_13"><![endif]></span><o:p></o:p></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>Excess Kurtosis (Fat
+Tails) – The observation values at the ends are too many, thereby increasing
+the probabilities at the end, thereby violating the test of normal
+distribution, where probabilities are concentrated more towards the centre.<o:p></o:p></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape id="Picture_x0020_16"
+ o:spid="_x0000_i1029" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="Intro%20&amp;%20Descriptive%20Statistics_files/image057.png"
+  o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image058.jpg') }}" v:shapes="Picture_x0020_16"><![endif]></span><o:p></o:p></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>A Box Plot for Normal
+Data Set<o:p></o:p></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>Whiskers – Q1 to all
+the way down and Q3 to all the way up<o:p></o:p></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape id="Picture_x0020_19"
+ o:spid="_x0000_i1028" type="#_x0000_t75" style='width:451.5pt;height:260.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="Intro%20&amp;%20Descriptive%20Statistics_files/image059.png"
+  o:title="" croptop="13257f" cropbottom="9896f" cropleft="11553f" cropright="12603f"/>
+</v:shape><![endif]--><![if !vml]><img width=602 height=347
+src="{{ url_for('static',filename='image060.jpg') }}" v:shapes="Picture_x0020_19"><![endif]></span><o:p></o:p></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>In this case the
+ideal test distribution was a normal distribution and since the points fall in
+a straight line, stock return data is normally distributed.<o:p></o:p></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape id="Picture_x0020_22"
+ o:spid="_x0000_i1027" type="#_x0000_t75" style='width:498pt;height:279pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="Intro%20&amp;%20Descriptive%20Statistics_files/image061.png"
+  o:title="" croptop="13817f" cropbottom="10829f" cropleft="11763f"
+  cropright="12708f"/>
+</v:shape><![endif]--><![if !vml]><img width=664 height=372
+src="{{ url_for('static',filename='image062.jpg') }}" v:shapes="Picture_x0020_22"><![endif]></span><o:p></o:p></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>You can see that at
+both the extreme ends, the data points do not fall on the straight line;
+however, in Q-Q plot we are much concerned about the observations in the
+middle. Thus, in the present visualization, it wouldn’t be possible to state
+that the data is not necessarily normally distributed. <o:p></o:p></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>In cases where the
+data points at the extreme ends are way off the straight line, then it may be
+so that the data is not normally distributed.<o:p></o:p></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape id="Picture_x0020_25"
+ o:spid="_x0000_i1026" type="#_x0000_t75" style='width:504.75pt;height:283.5pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="Intro%20&amp;%20Descriptive%20Statistics_files/image063.png"
+  o:title="" croptop="13443f" cropbottom="11016f" cropleft="11658f"
+  cropright="12708f"/>
+</v:shape><![endif]--><![if !vml]><img width=673 height=378
+src="{{ url_for('static',filename='image064.jpg') }}" v:shapes="Picture_x0020_25"><![endif]></span><o:p></o:p></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape id="Picture_x0020_28"
+ o:spid="_x0000_i1025" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="Intro%20&amp;%20Descriptive%20Statistics_files/image065.png"
+  o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image066.jpg') }}" v:shapes="Picture_x0020_28"><![endif]></span><o:p></o:p></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>Not even close enough
+to linear, therefore it does not fit the normal distribution (the test
+distribution for these P-P and Q-Q Plots).<o:p></o:p></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>Not even close enough
+to linear, therefore it does not fit the normal distribution (the test
+distribution for these P-P and Q-Q Plots).<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitle>Random Variable Basics</p>
+
+</div>
+
+<p class=MsoNormal>A variable that takes on a <b style='mso-bidi-font-weight:
+normal'>numerical value</b> as a result of <b style='mso-bidi-font-weight:normal'>random
+experiment</b>; there is a numerical value associated with each possible
+outcome. Presence of NUMERICAL VALUE is ESSENTIAL.</p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>2 Concepts to be kept
+differentiated –<o:p></o:p></b></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>The numerical value that the random variable can
+take associated with each possible outcome. Eg – values 1 to 6 when throwing a
+dice or Heads or Tails in a Coin Flip.</p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>The Random Variable itself. Eg – the act of
+throwing the dice itself.</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1080" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"067.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image068.jpg') }}" v:shapes="_x0000_i1080"><![endif]></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>Discrete Random Variable
+– <o:p></o:p></b></p>
+
+<p class=MsoNormal>Imagine rolling a dice; we only have 6 possible outcomes. So
+we get basically get a cube with six sides.</p>
+
+<p class=MsoNormal>Variables that have finite no. of outcomes with no
+in-between or variables with a series of infinite outcomes but only whole no.s.
+The magnitude of difference b/w the outcome values is meaningful.</p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>Continuous Random
+Variable – <o:p></o:p></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>Imagine an experiment
+(eg - temperature outside) </b>where there are infinite possible outcomes
+(imagine a dice where there are infinitely many surfaces and the difference between
+the values of each of the surface is very very minute, that ultimately turns
+the cube dice into a smooth sphere), basically<span style='mso-spacerun:yes'>
+</span>between successive possible outcomes, the magnitude of difference is
+miniscule. Here, there exist in-betweens and also values between whole no.s..</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1079" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"069.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image070.jpg') }}" v:shapes="_x0000_i1079"><![endif]></span></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitleCxSpFirst><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpMiddle><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpMiddle><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpMiddle><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpMiddle><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpMiddle><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpMiddle><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpMiddle><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpMiddle><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpMiddle><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpMiddle><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpLast>Discrete Random Variable Probabilities</p>
+
+</div>
+
+<p class=MsoNormal>Experiment has finite outcomes </p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1078" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"071.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image072.jpg') }}" v:shapes="_x0000_i1078"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>Probability
+Distribution for a Random Variable </b>tells us about the probabilities of each
+possible outcome for that random variable, basically P(x).</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1077" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"073.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image074.jpg') }}" v:shapes="_x0000_i1077"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1076" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"075.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image076.jpg') }}" v:shapes="_x0000_i1076"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1075" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"077.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image078.jpg') }}" v:shapes="_x0000_i1075"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1074" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"079.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image080.jpg') }}" v:shapes="_x0000_i1074"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Distribution is skewed to the right, majority of the
+probabilities fall in the right</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1073" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"081.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image082.jpg') }}" v:shapes="_x0000_i1073"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_25" o:spid="_x0000_i1072" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"083.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image084.jpg') }}" v:shapes="Picture_x0020_25"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitle>Expected Value – the outcome value the random variable is
+most likely to take</p>
+
+</div>
+
+<p class=MsoNormal>Multiplying the value of the outcome with weightage associated
+(given) to it. Wheightage is in decimal format or if its in percent then you
+need to divide it by 100. The sum of all weightages has to be 1.</p>
+
+<p class=MsoNormal>The Final Grade here is the expected value.</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_28" o:spid="_x0000_i1071" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"085.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image086.jpg') }}" v:shapes="Picture_x0020_28"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_31" o:spid="_x0000_i1070" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"087.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image088.jpg') }}" v:shapes="Picture_x0020_31"><![endif]></span></p>
+
+<p class=MsoNormal>Expected Value for a Die Roll is 3.5</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_34" o:spid="_x0000_i1069" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"089.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image090.jpg') }}" v:shapes="Picture_x0020_34"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_37" o:spid="_x0000_i1068" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"091.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image092.jpg') }}" v:shapes="Picture_x0020_37"><![endif]></span></p>
+
+<p class=MsoNormal>The expected value is right in the middle since each of the
+outcome values are equally likely.</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_40" o:spid="_x0000_i1067" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"093.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image094.jpg') }}" v:shapes="Picture_x0020_40"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_43" o:spid="_x0000_i1066" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"095.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image096.jpg') }}" v:shapes="Picture_x0020_43"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_46" o:spid="_x0000_i1065" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"097.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image098.jpg') }}" v:shapes="Picture_x0020_46"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>The probability of each of the outcome is not the same and
+thus the expected value is not in the middle.</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_52" o:spid="_x0000_i1064" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"099.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image100.jpg') }}" v:shapes="Picture_x0020_52"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitle>Discrete Random Variable Variance</p>
+
+</div>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_55" o:spid="_x0000_i1063" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"101.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image102.jpg') }}" v:shapes="Picture_x0020_55"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_58" o:spid="_x0000_i1062" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"103.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image104.jpg') }}" v:shapes="Picture_x0020_58"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitleCxSpFirst><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpMiddle><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpMiddle><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpMiddle><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpMiddle><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpMiddle><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpLast><o:p>&nbsp;</o:p></p>
+
+</div>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitleCxSpFirst><o:p>&nbsp;</o:p></p>
+
+<p class=MsoTitleCxSpLast>Binomial Distribution</p>
+
+</div>
+
+<p class=MsoNormal>A Specific Type of Discrete Probability Distribution,
+wherein each trial has only two possibilities, a success or a failure.</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_61" o:spid="_x0000_i1061" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"105.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image106.jpg') }}" v:shapes="Picture_x0020_61"><![endif]></span></p>
+
+<p class=MsoNormal>An Experiment <span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_64" o:spid="_x0000_i1060" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"107.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image108.jpg') }}" v:shapes="Picture_x0020_64"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_67" o:spid="_x0000_i1059" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"109.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image110.jpg') }}" v:shapes="Picture_x0020_67"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_70" o:spid="_x0000_i1058" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"111.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image112.jpg') }}" v:shapes="Picture_x0020_70"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Extending the experiment to increase no. of defective
+products</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_73" o:spid="_x0000_i1057" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"113.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image114.jpg') }}" v:shapes="Picture_x0020_73"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Plotting the Binomial Distribution as the no. of defective
+products increase</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_76" o:spid="_x0000_i1056" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"115.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image116.jpg') }}" v:shapes="Picture_x0020_76"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitle>Binomial Mean and Binomial Standard Deviation</p>
+
+</div>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_82" o:spid="_x0000_i1055" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"117.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image118.jpg') }}" v:shapes="Picture_x0020_82"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_85" o:spid="_x0000_i1054" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"119.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image120.jpg') }}" v:shapes="Picture_x0020_85"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>1.37 standard deviation sales per day</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_88" o:spid="_x0000_i1053" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"121.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image122.jpg') }}" v:shapes="Picture_x0020_88"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Margo’s data is more spread out and hence, the S.D. is also
+higher.</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_91" o:spid="_x0000_i1052" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"123.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image124.jpg') }}" v:shapes="Picture_x0020_91"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_94" o:spid="_x0000_i1051" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"125.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image126.jpg') }}" v:shapes="Picture_x0020_94"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_100" o:spid="_x0000_i1050" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"127.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image128.jpg') }}" v:shapes="Picture_x0020_100"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitle>Simple Binomial Sales Quota Analysis</p>
+
+</div>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_103" o:spid="_x0000_i1049" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"129.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image130.jpg') }}" v:shapes="Picture_x0020_103"><![endif]></span></p>
+
+<p class=MsoNormal>‘Atleast’ involves calculating cumulative probability</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Binomcdf(10,0.75,5) – binomial cumulative density function,
+10 is the total no. of trials(n), 0.75(p) is the probability of success and
+5(x) is the no. of trials upto which (from 0 to 5) we’ll be calculating thep
+robabilities.<span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape id="Picture_x0020_106"
+ o:spid="_x0000_i1048" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"131.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image132.jpg') }}" v:shapes="Picture_x0020_106"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_109" o:spid="_x0000_i1047" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"133.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image134.jpg') }}" v:shapes="Picture_x0020_109"><![endif]></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>The Lesson</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_112" o:spid="_x0000_i1046" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"135.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image136.jpg') }}" v:shapes="Picture_x0020_112"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_115" o:spid="_x0000_i1045" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"137.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image138.jpg') }}" v:shapes="Picture_x0020_115"><![endif]></span></p>
+
+<p class=MsoNormal>Solution – Simply using ratio proportion logic</p>
+
+<p class=MsoNormal><span style='font-size:10.5pt;line-height:115%;font-family:
+"Arial","sans-serif";color:#111111;background:white'>Bonus Solving for Call
+Volume: Cross multiply&nbsp; [16 = .802&nbsp;&nbsp; X = .922]&nbsp; Therefore:
+[X(.802) = (16)(.922)] &nbsp;[X = (14.752) / (.802)]&nbsp;&nbsp;&nbsp; [X =
+18.39]&nbsp; You can't make a partial call, unless it's a prank call.&nbsp;
+Therefore, Margo will have to strive for 19.<o:p></o:p></span></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitle><span style='mso-fareast-font-family:"Times New Roman";
+mso-font-kerning:18.0pt'>Binomially Distributed Mac OS X User Rate<o:p></o:p></span></p>
+
+</div>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_121" o:spid="_x0000_i1044" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"139.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image140.jpg') }}" v:shapes="Picture_x0020_121"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_118" o:spid="_x0000_i1043" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"141.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image142.jpg') }}" v:shapes="Picture_x0020_118"><![endif]></span></p>
+
+<p class=MsoNormal>The probability distribution is lumped to the left since the
+success rate (p) is very low (0.73). If the success rate was 0.5 we would
+rather have a normal distribution, with max data in middle. This is how success
+rate determines where the vast majority of data would be. </p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitle>Moving From Histograms To Curves; Discrete to Continuous</p>
+
+</div>
+
+<h1>Combinations -<span style='mso-spacerun:yes'>  </span>Nearly Normal</h1>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Where the concepts actually come from !!!</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_10" o:spid="_x0000_i1042" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"143.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image144.jpg') }}" v:shapes="Picture_x0020_10"><![endif]></span></p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+style='font-family:"Arial","sans-serif";color:#222222;background:white'>A&nbsp;<b>discrete
+variable</b>&nbsp;is a&nbsp;<b>variable</b>&nbsp;which can only take a
+countable number of values. In this example, the number of heads can only take
+4 values (0, 1, 2, 3) and so the&nbsp;<b>variable</b>&nbsp;is&nbsp;<b>discrete</b>.
+The&nbsp;<b>variable</b>&nbsp;is said to be&nbsp;<b>random</b>&nbsp;if the sum
+of the probabilities is one.&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape id="_x0000_i1041" type="#_x0000_t75"
+ style='width:468pt;height:239.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"145.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=319
+src="{{ url_for('static',filename='image146.jpg') }}" v:shapes="_x0000_i1041"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1040" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"147.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image148.jpg') }}" v:shapes="_x0000_i1040"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1039" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"149.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image150.jpg') }}" v:shapes="_x0000_i1039"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1038" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"151.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image152.jpg') }}"152.jpg" v:shapes="_x0000_i1038"><![endif]></span></p>
+
+<p class=MsoNormal>From a Histogram in a Discrete World to a Continuous
+Function in a Continuous World.</p>
+
+<p class=MsoNormal>Statistics is based on Continuous Data which is an extension
+of Combination Principles to an infinity level; from extremes (0 and n) in
+small group to extremes (0 and infinity) in extremely large groups (infinitely
+large).</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<h1>Combinations – Under the Normal Curve</h1>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Basically tells how the area under the Normal Curve comes to
+be 1. It converts all the possible combinations into proportions and then plot
+a histogram. Thereafter, it equates the Histogram to a Normal Curve (something
+we look for when calculating probabilities). Sum of all possible Proportions
+and Probabilities in a data is equal to 1. Hence, the area under the Histogram
+or a Normal Curve is equal to 1.<span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1037" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"153.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image154.jpg') }}" v:shapes="_x0000_i1037"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1036" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"155.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image156.jpg') }}" v:shapes="_x0000_i1036"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1035" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"157.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image158.jpg') }}" v:shapes="_x0000_i1035"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1034" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"159.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image160.jpg') }}" v:shapes="_x0000_i1034"><![endif]></span></p>
+
+<p class=MsoNormal>One is histogram version of the proportions, one is a
+representation with a smooth line, and both have area under them equal to 1 (as
+we are visualizing proportion).</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1033" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"161.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image162.jpg') }}" v:shapes="_x0000_i1033"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1032" type="#_x0000_t75" style='width:468pt;height:263.25pt;
+ visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"163.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image164.jpg') }}" v:shapes="_x0000_i1032"><![endif]></span></p>
+
+<p class=MsoNormal>This area = 1, represents probabilities/proportions.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'>
+
+<p class=MsoTitle>Joint and Marginal Probabilities</p>
+
+</div>
+
+<p class=MsoNormal>Bi-variate Probabilities: Probabilities b/w two variables</p>
+
+<p class=MsoNormal>Method to analyze the interaction b/w two variables and
+viewing their Probabilities: Joint and Marginal Probabilities</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_1" o:spid="_x0000_i1031" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"165.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image166.jpg') }}" v:shapes="Picture_x0020_1"><![endif]></span></p>
+
+<p class=MsoNormal>Two variables: GE and Apple Stock</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_4" o:spid="_x0000_i1030" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"167.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image168.jpg') }}" v:shapes="Picture_x0020_4"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_7" o:spid="_x0000_i1029" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"169.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image170.jpg') }}" v:shapes="Picture_x0020_7"><![endif]></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_13" o:spid="_x0000_i1028" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"171.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image172.jpg') }}" v:shapes="Picture_x0020_13"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'>A Question of Conditional
+Probability<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_16" o:spid="_x0000_i1027" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"173.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image174.jpg') }}" v:shapes="Picture_x0020_16"><![endif]></span></p>
+
+<p class=MsoNormal>Calculating the Joint and Marginal Probabilities</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_19" o:spid="_x0000_i1026" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"175.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image176.jpg') }}" v:shapes="Picture_x0020_19"><![endif]></span></p>
+
+<p class=MsoNormal>The Blue Box contains Joint Probabilities (since it is
+dependent on the intersection of the two variables) and the Orange contains
+Marginal Probabilities.</p>
+
+<p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_22" o:spid="_x0000_i1025" type="#_x0000_t75" style='width:468pt;
+ height:263.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="{{ url_for('static',filename='image076.jpg') }}"177.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=624 height=351
+src="{{ url_for('static',filename='image178.jpg') }}" v:shapes="Picture_x0020_22"><![endif]></span></p>
+
+<p class=MsoNormal>The Question involves calculating Conditional Probability.
+Example<span style='mso-spacerun:yes'>  </span>- <span
+style='mso-spacerun:yes'> </span>given Apple did not suffer a Loss what is the
+probability GE also did not suffer a loss? Ans = .301/.518. Formula: P(A|B)
+read as Probability of A given Probability of B = P (A and B)/P(B), P(A and B)
+is the same as P (A intersection B).</p>
+
+<p class=MsoNormal>Basically what proportion of the given probability is the
+other probability.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+<hr>
+
+<p class=MsoTitle>R basic knowledge</p>
+
+<ul>
+  <li>vectors - assigning same type of values to an object eg - x <- c(7, 2, 3, 4)</li>
+  <li>executing it (pressing ctrl+enter), the environment will look like x |num[1:4} 7 2 3 4 and the console will simply display
+x <- c(7, 2, 3, 4) as it is. However, calling out x now in the script will print values 7 2 3 4 in the console.</li>
+<li>We can use index to call specific values for eg x[1] will give 7 in the console or x[1:4] will give 7 2 3 4.</li>
+<li>Using operators (<, >, ==, !=) will give boolean outputs in the console for each of the values, eg, x > 0 will give True
+True True True.</li>
+<li> x^2 will square each of the values, same goes for multiplication, division, subtraction, addition. </li>
+<li>Mean(x) to get mean of all the values. </li>
+<li>length(x) will give the total number of items. sum(x) will add all the items.</li>
+<li>We can combine indexing and other functions to get desired outputs, eg - x[x>0], rather than boolean output this will give all the numbers inside the vector that are greater than zero.</li>
+<li>Importing data, the file should be in .csv, you can save excel file as .csv. Import Dataset option in the environment will allow to import data. Once imported a window pops up, asking for name, whatever name you give will then become the object inside the Rstudio. Selecting Headings as yes will ensure that the 1st row of the dataset contain column names (aka the
+variables). The environment will then tell you the number of rows (obs for observation) and number of columns(the variable
+names).
+</li>
+<li>Using a function on a dataset involves - functionname(datasetname$variablename), eg - mean(Bikedata$distance),
+this would be an example representing a quantitative variable.
+</li>
+<li>Representing a categorical variable can be done using table function, eg - table(datasetname$variablename). Executing it
+would display in the console each of the sub-categories within that categorical variable alongwith the total count of each of
+those sub-categories.
+</li>
+<li>INDEXING DATA FRAMES - data frame is a matrix of multiple rows and columns. Pulling out specific cases from a data set also involves indexing - dataframename[row no., column name]- the first index
+would always refer to the row and the 2nd to column.
+</li>
+<li>Pulling out the entire data of one single variable(column) - dataframename[, column name] - notice, the first index is
+kept blank. This will represent the data as it is in that column but not the total count of each of the values.
+</li>
+<li>To get a total count of cases inside a variable, we need to use the table function again - table(datasetname$variablename)</li>
+<li>CREATING NEW DATAFRAME from existing one -
+<br>
+We can combine assignment and indexing in dataframes to pull out data pertaining to specific cases, eg- data pertaining
+to females. females <- Bikedata[Bikedata$gender == 'F', ] - keeping the 2nd index blank will allow us to include all the
+other columns. Running it would create a new dataset in the "environment" with the dataset name females. Basic format,
+datasetname you want <- existing datasetname[specific row item you want inside a variable, the column(s) you want for that
+ row item], now this would create an entire new dataset with all the other variables.</li>
+<li>If you want a data set for only one other variable, instead of datasetname, you can make the format as dataname <-
+[datasetname$variable, datasetname$diffvariable == 'F'], here  we are only categorizing females based on speed and hence,
+there is no second index to refer to some other column. Once we have narrowed down the dataset to a single column we can
+perform functions such as mean(assignmentname).</li>
+
+</ul>
+
+</div>
+
+
+</body>
+
+</html>
+
+
+
+<div class="container">
+  <div class="card" style="margin top:10px">
+    <div class="card-body">
+      <a href="/rstatsp1w2"><button type="button" class="btn btn-light btn-outline-success col-xl-2 col-lg-2 col-md-2 col-sm-1" style="float:right">Week 2</button></a>
+    </div>
+  </div>
+</div>
+{% endblock %}

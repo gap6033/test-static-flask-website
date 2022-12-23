@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+R: Statistics & Probability Part 1 Week 4
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="card" style="margin-top:50px">
+    <div class="card-body">
+      <h1 style="color:blue; text-align:center;">Learning Statistics and Probability using R: Part I</h1>
+      <h3>Topics</h3>
+      <ul>
+        <li><a href="/rstatsp1w1">Week 1 - Intro to Stats and Probability and a bit of R</a></li>
+        <li><a href="/rstatsp1w2">Week 2 - S.D., IQR, Visualizing Data in R, z-score right side probability</a></li>
+        <li><a href="/rstatsp1w3">Week 3 - Plotting bivariate data in R</a></li>
+        <li><a href="#rstatsp1w4">Week 4 - Visualization of bivariate categorical data in R</a></li>
+        <li><a href="/rstatsp1w5">Week 5 - Bivariate Data, Functions and Linear Models</a></li>
+        <li><a href="/rstatsp1w6">Week 6 - Exponential and Logistic Model</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="card" style="margin-top:10px">
+    <div class="card-body">
+      <h4 style="color:blue; text-align:center;"><a id="rstatsp1w4">Week 4 - Plotting bivariate data in R</a></h4>
+      <br>
+      <hr>
+      <br>
+      <h6>Visualization of Bivariate Categorical Data in R</h6>
+      <ul>
+        <li>#Subset the data for artists age 30 or older:
+older <-acl[acl$Age>=30,]</li>
+        <li># Create tables of marginal distributions:
+        <ul>
+          <li>genre <- table(older$Genre)</li>
+          <li>gender <- table(older$Gender)</li>
+        </ul>
+        </li>
+        <li># Create contingency table:
+twoway <- table(older$Gender,older$Genre)</li>
+        <li># Visualize the counts:
+barplot(twoway, legend=T, beside=T)....besides would give a side by side bar chart, if there is no besides we'll get stacked up bar columns</li>
+        <li># Calculate P(A): the probability of each genre being played:
+prop.table(genre)......prop.table can only have "table" assignment inside the parenthesis </li>
+        <li># Calculate P(A|B): the probability of each genre being played, given the artist’s gender:
+prop.table(twoway,1).....1 relates to older$Gender and 2 would have related to older$Genre because of their order inside the "twoway" assignment above.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="card" style="margin top:10px">
+    <div class="card-body">
+      <a href="/rstatsp1w3"><button type="button" class="btn btn-light btn-outline-success col-xl-2 col-lg-2 col-md-2 col-sm-1"> Week 3</button></a>
+      <a href="/rstatsp1w5"><button type="button" class="btn btn-light btn-outline-success col-xl-2 col-lg-2 col-md-2 col-sm-1" style="float:right">Week 5</button></a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block title %}
+R: Statistics & Probability Part 1 Week 2
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="card" style="margin-top:50px">
+    <div class="card-body">
+      <h1 style="color:blue; text-align:center;">Learning Statistics and Probability using R: Part I</h1>
+      <h3>Topics</h3>
+      <ul>
+        <li><a href="/rstatsp1w1">Week 1 - Intro to Stats and Probability and a bit of R</a></li>
+        <li><a href="#rstatsp1w2">Week 2 - S.D., IQR, Visualizing Data in R, z-score right side probability</a></li>
+        <li><a href="/rstatsp1w3">Week 3 - Plotting bivariate data in R</a></li>
+        <li><a href="/rstatsp1w4">Week 4 - Visualization of bivariate categorical data in R</a></li>
+        <li><a href="/rstatsp1w5">Week 5 - Bivariate Data, Functions and Linear Models</a></li>
+        <li><a href="/rstatsp1w6">Week 6 - Exponential and Logistic Model</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="card" style="margin-top:10px">
+    <div class="card-body">
+      <h4 style="color:blue; text-align:center;"><a id="rstatsp1w2">Week 2 - S.D., IQR, Visualizing Data in R, z-score right side probability</a></h4>
+      <br>
+      <hr>
+      <br>
+      <ul>
+        <li>S.D is also a measure of spread used in symmetrical distribution. IQR is a better measure of spread in skewed distribution</li>
+      </ul>
+      <br>
+      <h6>Data Visualization with R</h6>
+      <hr>
+      <ul>
+        <li>Descriptive Statistics - With descriptive statistics, we get to literally explain to somebody else the parameters or the
+          characteristics that make up a numerical or quantitative variable. It tells what the distribution of a variable looks like.Skewed data means more variation.Symmetric data means less variation</li>
+        <li>Import the Dataset</li>
+        <li>header(datasetname) gives you a preview of few rows(first 6) with all the variables in the console. This will help you to
+            know if the variable you want to plot is categorical or quantitative.</li>
+        <li>plot(datasetname$variable)....plot is used in case of categorical variables. This will give you a bar chart representation
+              in the work environment(window in the bottom right corner) but without any x-axis or y-axis value or a heading for the
+              graph. To get these values; - (for heading)main='whatever heading you want', xlab ='whatever x axis represents', ylab =
+              'whatever...'. In summary plot(datasetname$variable,main='whatever heading you want', xlab ='whatever x axis represents', ylab =
+              'whatever...')</li>
+        <li>For quantitative variable - a histogram replace "plot" with "hist"</li>
+        <li>When you want to work with a variable within a sub-dataset of a dataset, use assignment to reach that variable within the
+                  sub-dataset and then depending what the type of variable is use plot or hist and inside the parenthesis mention the
+                  assignment name </li>
+        <li>femaledogsage <- datasetname$ageofintake[datasetname$gender == 'Female']
+                    hist(femaledogsage)
+                  </li>
+        <li>Specifying the number of bins - breaks (convention to keep bins between 10-15), works with "plot" also
+                    hist(femaledogsage, breaks = 5), will have 5 bins/5 bars
+                    hist(femaledogsage, breaks = 15), will have 15</li>
+        <li>max(assignmentname) works with quantitative variable only and will give the maximum value present for that variable for
+                      which the assignment was created then you can use (the main datasetname not the subdataset) datasetname[row number,].....nothing after"," as we want to view all other variables for that max value.</li>
+        <li>Calculating Center and Spread (as obvious, relevant only for quantitative variable)-
+        <ul>
+          <li>mean(datasetname$variable)</li>
+          <li>median(datasetname$variable)</li>
+          <li>sd(datasetname$variable)</li>
+          <li>fivenum(datasetname$variable)</li>
+        </ul
+        </li>
+      </ul>
+      <h6>Z-score</h6>
+      <hr>
+      <ul>
+        <li>The z-score table gives the probability of the left side of a normal distribution. If you want to know the probability of the right side and you have your z-score (which would obviously be positive since its on the right half) just change the sign of z-score to negative and look at the corresponding probability. That would be the answer.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="card" style="margin top:10px">
+    <div class="card-body">
+      <a href="/rstatsp1w1"><button type="button" class="btn btn-light btn-outline-success col-xl-2 col-lg-2 col-md-2 col-sm-1"> Week 1</button></a>
+      <a href="/rstatsp1w3"><button type="button" class="btn btn-light btn-outline-success col-xl-2 col-lg-2 col-md-2 col-sm-1" style="float:right">Week 3</button></a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+
+{% block title %}
+R: Statistics & Probability Part 1 Week 6
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="card" style="margin-top:50px">
+    <div class="card-body">
+      <h1 style="color:blue; text-align:center;">Learning Statistics and Probability using R: Part I</h1>
+      <h3>Topics</h3>
+      <ul>
+        <li><a href="/rstatsp1w1">Week 1 - Intro to Stats and Probability and a bit of R</a></li>
+        <li><a href="/rstatsp1w2">Week 2 - S.D., IQR, Visualizing Data in R, z-score right side probability</a></li>
+        <li><a href="/rstatsp1w3">Week 3 - Plotting bivariate data in R</a></li>
+        <li><a href="/rstatsp1w4">Week 4 - Visualization of bivariate categorical data in R</a></li>
+        <li><a href="/rstatsp1w5">Week 5 - Bivariate Data, Functions and Linear Models</a></li>
+        <li><a href="#rstatsp1w6">Week 6 - Exponential and Logistic Model</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="card" style="margin-top:10px">
+    <div class="card-body">
+      <h4 style="color:blue; text-align:center;"><a id="rstatsp1w6">Week 6 - Exponential and Logistic Model</a></h4>
+      <br>
+      <hr>
+      <br>
+      <h6>Expo and Logistic Models</h6>
+      <br>
+      <ul>
+        <li>Linear Model - Constant Rate of change/difference b/w two consecutive y-variable for a unit change in x variable(independent variable) is constant.
+Expo Model - Constant Percentage Rate of Change/ratio b/w two consecutive y-variable for a unit change in x variable(independent variable) is constant.</li>
+        <li>
+Expo Model Form = ab^x, a is the intial value, b is the growth factor also = 1 + r, this r is known as rate of change, if r is in the form of percent then divide by
+100, 45% means r = 0.45. For every consecutive y-variable, for a unit change in x variable, the difference will be r% (this is what is meant by constant percentage
+rate of change). Eg - if r = 0.45, then there will be a difference of 45% in every consecutive y-variable (the outcome variable/the variable of interest/the dependent
+variable)</li>
+      </ul>
+      <hr>
+      <br>
+      <h6>R tutorial for Expo and Logistic Models</h6>
+      <br>
+      <ul>
+        <li>First we import the data set </li>
+        <li>Then we may have to create another (sub)dataset depending on the independent variable we are interested in which is normally related to time, could be sec, hours
+days, month, year, so on. Time is the independent variable mostly.</li>
+        <li>So something to keep in mind when you're going to be running a logistic model is that you need to start your time variable at 0. Generally, we deal with growth and
+decay, therefore, it involves time and thereby years, but we do not want our x-axis to not start from zero. Therefore, we create a new column in the dataset
+(technical name 'vector') by following method:
+        <ul>
+          <li>
+time (this will create a new column named 'time' in the dataset and this is also referred to as the vector) <- datasetname$variablename - min(datasetname$variablename)
+P.S - instead of min(datasetname$variablename) we can directly subtract the smallest year. eg - datasetname$variablename - 2000. Assuming 2000 was the smallest/starting
+year on the x-axis. This allows to make 't' = 0, rather than 2000.</li>
+        </ul>
+        </li>
+        <li>Also, we can specify an upper limit for the years in the dataset. Eg - newdatasetname <- originaldatasetname[originaldatasetname>= 2000 & originaldatasetname <= 2009,].
+This sets an upper limit of 2009.</li>
+        <li>eg - Pop$new <- Pop$Population - min(Pop$Population)......this will subtract the minimum value from all the x-axis data points, therefore relative to each other, the
+x-variable data points would still be at the same distance and hence, there would not be any change in the slope or coefficient of determination but it will ensure that
+the y-variable minimum value remains positive.</li>
+        <li>Now, once we have completed these prequisites. We can plot the data -
+plot(time, datasetname$dependentvariable).....this will give a scatterplot we can also create a vector for 'datasetname$dependentvariable' by assigning it and use
+that vector inside name just like 'time' inside the paranthesis. Eg - mv <- datasetname$dependentvariable, now we can write plot(time, mv).
+</li>
+        <li>We can get exponential model line-fit through following -
+expFit(time, mv)....this will plot the graph, as well as give the values of a, b and r^2 (values given in console window)
+</li>
+        <li>We can get logistic model line-fit through following -
+logisticFit(time, mv)....his will plot the graph, as well as give the values of C, a, b, r^2 (values given in console window)
+</li>
+        <li>We can compare which model is better by looking at the r^2 values (closer to 1, the better)
+</li>
+        <li>We can get all three model-fit all at once alongwith r^2 value of each through following -
+tripleFit(time, mv) (r^2 value given in the environment window with the graph)
+</li>
+        <li>You might sometimes want to predict a value of your dependent variable based on your value of your independent variable for one of these models.And to do this we can
+use two new functions. The first one is called expFitPred this requires three arguments -
+exFitPred(time, mv, the year for which you need the prediction). Note - since we change x-axis time values, make changes accordingly in the third argument. Eg - since
+2000 is no 0, prediction for 2012 would require argument '12' rather than 2012. exFitPred(time, mv, 12)
+</li>
+<li>For Logistic
+logisticFitPred(time, mv, 12)</li>
+<li></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="card" style="margin top:10px">
+    <div class="card-body">
+      <a href="/rstatsp1w4"><button type="button" class="btn btn-light btn-outline-success col-xl-2 col-lg-2 col-md-2 col-sm-1"> Week 4</button></a>
+      <a href="/rstatsp2w1"><button type="button" class="btn btn-light btn-outline-success col-xl-2 col-lg-2 col-md-2 col-sm-1" style="float:right">Part 2 </button></a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+R: Statistics & Probability Part 1 Week 3
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="card" style="margin-top:50px">
+    <div class="card-body">
+      <h1 style="color:blue; text-align:center;">Learning Statistics and Probability using R: Part I</h1>
+      <h3>Topics</h3>
+      <ul>
+        <li><a href="/rstatsp1w1">Week 1 - Intro to Stats and Probability and a bit of R</a></li>
+        <li><a href="/rstatsp1w2">Week 2 - S.D., IQR, Visualizing Data in R, z-score right side probability</a></li>
+        <li><a href="#rstatsp1w3">Week 3 - Plotting bivariate data in R</a></li>
+        <li><a href="/rstatsp1w4">Week 4 - Visualization of bivariate categorical data in R</a></li>
+        <li><a href="/rstatsp1w5">Week 5 - Bivariate Data, Functions and Linear Models</a></li>
+        <li><a href="/rstatsp1w6">Week 6 - Exponential and Logistic Model</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="card" style="margin-top:10px">
+    <div class="card-body">
+      <h4 style="color:blue; text-align:center;"><a id="rstatsp1w3">Week 3 - Plotting bivariate data in R</a></h4>
+      <br>
+      <hr>
+      <br>
+      <h6>Plotting Bivariate Data in R</h6>
+      <ul>
+        <li>import dataset</li>
+        <li>plot(datasetname$variable(for x-axis-the independent variable), datasetname$variable (for dependent variable on y-axis), (optional)xlab = '', ylab = '', main = '').This will plot a scatterplot for two QUANTITATIVE variable.</li>
+        <li>For viewing the line through scatterplot - abline(lm(datasetname$variable(dependent one)~datasetname$variable(independent one)))</li>
+        <li>For calculating 'r' - Pearson correlation coefficient cor(datasetname$variable(for x-axis-the independent variable), datasetname$variable (for dependent variable on y-axis))</li>
+        <li>Coefficient of determination = r^2</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="card" style="margin top:10px">
+    <div class="card-body">
+      <a href="/rstatsp1w2"><button type="button" class="btn btn-light btn-outline-success col-xl-2 col-lg-2 col-md-2 col-sm-1"> Week 2</button></a>
+      <a href="/rstatsp1w4"><button type="button" class="btn btn-light btn-outline-success col-xl-2 col-lg-2 col-md-2 col-sm-1" style="float:right">Week 4</button></a>
+    </div>
+  </div>
+</div>
+{% endblock %}

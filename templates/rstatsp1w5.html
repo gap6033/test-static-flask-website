@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+R: Statistics & Probability Part 1 Week 5
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="card" style="margin-top:50px">
+    <div class="card-body">
+      <h1 style="color:blue; text-align:center;">Learning Statistics and Probability using R: Part I</h1>
+      <h3>Topics</h3>
+      <ul>
+        <li><a href="/rstatsp1w1">Week 1 - Intro to Stats and Probability and a bit of R</a></li>
+        <li><a href="/rstatsp1w2">Week 2 - S.D., IQR, Visualizing Data in R, z-score right side probability</a></li>
+        <li><a href="/rstatsp1w3">Week 3 - Plotting bivariate data in R</a></li>
+        <li><a href="/rstatsp1w4">Week 4 - Visualization of bivariate categorical data in R</a></li>
+        <li><a href="#rstatsp1w5">Week 5 - Bivariate Data, Functions and Linear Models</a></li>
+        <li><a href="/rstatsp1w6">Week 6 - Exponential and Logistic Model</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="card" style="margin-top:10px">
+    <div class="card-body">
+      <h4 style="color:blue; text-align:center;"><a id="rstatsp1w5">Week 5 - Bivariate Data, Functions and Linear Models</a></h4>
+      <br>
+      <hr>
+      <br>
+      <ul>
+        <li>The data need not pass the vertical line test.</li>
+        <li>The model(function) must pass the vertical line test.</li>
+        <li>y as a function of x </li>
+        <li>Similar to y = mx + c</li>
+        <li>linFit(dataset$independentvariable(x-axis), dataset$dependentvariable(y-axis))
+This will give intercept value and slope, thereby allowing us to determine y = mx + c equation.</li>
+        <li>There will arise situations in which the generated intercept value would be negative and hence would not be applicable in real life situations. In such cases we must
+convert our x-axis (independent) variable more usable...i.e. making the minimum value of provided data for the x-axis equal to 0.</li>
+        <li>eg - Pop$new <- Pop$Population - min(Pop$Population)......this will subtract the minimum value from all the x-axis data points, therefore relative to each other, the
+x-variable data points would still be at the same distance and hence, there would not be any change in the slope or coefficient of determination but it will ensure that
+the y-variable minimum value remains positive.</li>
+        <li>R^2 (Coefficient of determination)....closer it is to one.....that much proportion of the variance in the dependent variable can be attributed to independent variable.
+eg - 0.97....means 97% proportion of the variance of the y-axis variable is due to the x-axis variable.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="card" style="margin top:10px">
+    <div class="card-body">
+      <a href="/rstatsp1w4"><button type="button" class="btn btn-light btn-outline-success col-xl-2 col-lg-2 col-md-2 col-sm-1"> Week 4</button></a>
+      <a href="/rstatsp1w6"><button type="button" class="btn btn-light btn-outline-success col-xl-2 col-lg-2 col-md-2 col-sm-1" style="float:right">Week 6</button></a>
+    </div>
+  </div>
+</div>
+{% endblock %}

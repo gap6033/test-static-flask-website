@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+R: Statistics & Probability Part 2 Week 4
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="card" style="margin-top:50px">
+    <div class="card-body">
+      <h1 style="color:blue; text-align:center;">Learning Statistics and Probability using R: Part II</h1>
+      <h3>Topics</h3>
+      <ul>
+        <li><a href="/rstatsp2w1">Week 1 - Sampling Distributions and Estimation</a></li>
+        <li><a href="/rstatsp2w2">Week 2 - Hypothesis Testing</a></li>
+        <li><a href="/rstatsp2w3">Week 3 - Two-sample t-tests</a></li>
+        <li><a href="#rstatsp2w4">Week 4 - Hypothesis Testing for Categorical Data: Chi Square Test</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+    <a id="rstatsp2w3">  <h3 class="card-text" style="color:blue; text-align:center;">Week 4 - Hypothesis Testing for Categorical Data: Chi Square Test</h3></a><br><hr>
+    </div>
+    <img class="card-img-top" src="{{ url_for('static',filename='chi square test concept.jpg') }}" alt="Image of chi square test concept">
+  </div>
+</div>
+<div class="container">
+  <div class="card" style="margin top:10px">
+    <div class="card-body">
+      <a href="/rstatsp1w6"><button type="button" class="btn btn-light btn-outline-success col-xl-2 col-lg-2 col-md-2 col-sm-1"> Week 3</button></a>
+      <a href="#"><button type="button" class="btn btn-light btn-outline-success col-xl-2 col-lg-2 col-md-2 col-sm-1" style="float:right">Next Course </button></a>
+    </div>
+  </div>
+</div>
+{% endblock %}
